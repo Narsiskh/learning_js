@@ -302,5 +302,381 @@ function ourFunctionWithArgs(a, b) {
 }
 ourFunctionWithArgs(10, 5);
 ```
-#### Global Scope & Functions:
+#### Scopes:
+Generally, scope refers to the parts of a program where a variable, function, object, etc. is accessible.
+```javascript
+const x = 10;
+
+function getX() {
+  alert(x);
+
+  const y = 20;
+}
+
+getX();
+alert(y); // error
+```
+In the function `getX` , we were able to access the variable `x` , which was defined outside the function, and `alert` it. Additionally, we defined a variable named `y` in this function and are alerting it in the last line. However, we get an error that `y` is not defined. Why does this happen? This is due to the rules that scopes have in JavaScript!
+
+In JavaScript, we have three types of scopes: 
+1. global scope
+2. local scope
+3. block scope
+
+! Block: We refer to the space between two curly brackets `{ ... }`  a block in JavaScript. For example, the space inside `if`, `while`, and other statements.
+```JavaScript
+if (...) {
+  /* 
+    Block
+  */
+}
+
+for (...) {
+  /* 
+    Block
+  */
+}
+
+{
+  /* 
+    Block
+  */
+}
+```
+##### Global Scope & Functions:
 Scope refers to the visibility of variables. Variables which are defined outside of a function block have global scope. Global Scope means they ca be seen everywhere in your JS code.
+```javascript
+const name = "Diego";
+
+function func() {
+  alert(name); // Diego
+}
+
+func();
+```
+In the code snippet above, the variable `name` is defined in the global scope because it is not restricted to any function or block and is in the outermost state. Variables defined in the global scope are also accessible in functions. Therefore, the above code runs without any issues.
+
+! Global variables are accessible throughout the program.
+
+##### Local Scope:
+Variables defined within a function have local scope and are only accessible within that function.
+```javascript
+function getUser() {
+  // Local Scope
+
+  const user = "Mario";
+  alert(user);
+}
+
+getUser();   // Mario
+alert(user); // ReferenceError: user is not defined
+```
+In the above code snippet, the `alert` in line 7 works correctly because the variable `user` is in the same scope. However, the `alert` in the last line throws an error because the variable `user` does not exist in that scope. This scope is called Function Scope.
+
+! What about Nested Functions?
+ ```javascript
+ function func1() {
+  // Local Scope #1
+  const name = "Mario";
+
+  function func2() {
+    // Local Scope #2 
+    const lastname = "Doe";
+
+    alert(`${name} ${lastname}`);
+  }
+
+  func2();
+}
+
+func1(); // John Doe
+```
+As we can see, a function named `func2` is defined inside another function named `func1`. According to the rules of scopes, inner functions can access the variables of their outer scopes. Therefore, the `func2` function has access to the `name` variable which is defined outside of it. However, the reverse is not true. Outer scopes cannot access the members of inner scopes.
+```javascript
+function func1() {
+  function func2() {
+    const x = 10;
+  }
+
+  alert(x);
+}
+
+func1(); // ReferenceError: x is not defined
+```
+
+##### Block Scope:
+As we mentioned, we call the space between two brackets a block. Variables defined with `let` and `const` are only accessible within that block:
+```javascript
+{
+  let x = 29;
+}
+
+alert(x) // ReferenceError: x is not defined
+```
+However, this is not the case for `var`. A variable defined with `var` inside a block is also accessible outside that block:
+```javascript
+{
+  var x = 12;
+}
+
+alert(x) // 12
+```
+In fact, the scope that a block creates is the same as local scope. That is, it is only accessible in that place:
+```javascript
+const x = 10;
+{
+  const x = 20;
+  alert(x); // 20
+}
+
+alert(x); // 10
+```
+By running the above code, we can see that the variable `x` inside the block does not interfere with the `x` defined outside. These two are actually separate variables.
+
+! If we have nested blocks, members of an outer block cannot access members of inner blocks; but members of inner blocks can access members of outer blocks:
+```javascript
+const x = 1;
+{
+  const y = 2;
+  {
+    alert(x); // ok
+    alert(y); // ok
+
+    const z = 3;
+  }
+  alert(z); // error
+}
+
+alert(y); // error
+```
+#### Return a Value from a Function:
+you can return a Value from a function with this return statement.
+```javascript
+function minusSeven(num) {
+   return num - 7;
+}
+console.log(minusSeven(20));
+```
+#### Undefined Value Returned:
+If you dont specify a return value, the return value is just undefined.
+```javascript
+var sum = 0
+function addThree() {
+   sum = sum + 3;
+}
+
+function addFive() {
+   sum += 5;
+}
+```
+#### Assignment With a Returned Value:
+Assignment with a Returned Value in JavaScript means assigning a value using the return value of a function. In other words, you can assign the return value of a function to a variable.
+```javascript
+var changed = 0;
+
+function change(num) {
+   return (num + 5) / 3;
+}
+
+changed = changed(10);
+
+var processed = 0;
+
+function processArg(num) {
+   return (num + 3) / 5;
+}
+
+processed = processedArg(7);
+```
+#### Stand in Line:
+
+In computer science a cue is an abstract data structure where items are kept in order.
+New items can be added to the back of the cue and old items are taken off from the front of the cue.
+```javascript
+function nextInLine(arr, item) {
+   arr.push(item);
+   return arr.shift();
+
+}
+
+var testArr = [1,2,3,4,5];
+
+console.log("Before: " + JSON.stringify(testArr));
+console.log(nextInLine(testArr, 6));
+console.log("After: " + JSON.stringify(testArr));
+```
+--------------------------------------
+### Boolean Values:
+Booleans are another data type in JS.
+They are only two values:
+1. True
+2. False
+
+! They dont use quotation marks around the Boolean.
+```javascript
+function welcomeToBooleans() {
+   return true;
+}
+```
+--------------------------------------
+### If Statements:
+An if statement is used to make decisions in code.
+
+The keyword `if` tells JS to execute the code in the curly braces under certain conditions defined in the paranthesis
+
+! Theres always parenthesis the keyword `if` ,and shows the condition.
+
+```javascript
+function trueOrFalse(wasThatTrue) {
+   if (wasThatTrue) {
+      return "Yes, that was true";
+   }
+   return "No, that was false";
+}
+
+console.log(trueOrFalse(true));
+```
+#### Equality Operators:
+##### Equality Operators: 
+There are many comparison operators in JS that will return a Boolean of true or false.The most common is the equality operator ,and it often used in an if statement.
+
+```javascript
+function testEqual (val) {
+   if (val == 12) {
+      return "Equal";
+   }
+}
+
+console.log(testEqual(10));
+```
+##### Strict Equality Operators:
+We learned about the equality operator which is the double equal == sign. Theres also the strict equality operator the triple equal sign ===.
+
+```javascript
+function testStrict(val) {
+   if (val === 7) {
+      return "Equal";
+   }
+   return "Not Equal";
+}
+
+testStrict(10);
+/*
+3 == 3
+3 === '3'
+*/
+```
+###### Practice Comparing Different Values:
+Lets do one more review with the equality operators and the strict equality operators.
+```javascript
+function compareEquality(a, b) {
+   if (a === b) {
+      return "Equal";
+   }
+   return "Not Equal";
+}
+
+console.log(compareEquality(10, "10"));
+```
+```javascript
+function compareEquality(a, b) {
+   if (a == b) {
+      return "Equal";
+   }
+   return "Not Equal";
+}
+
+console.log(compareEquality(10, "10"));
+```
+
+##### Comparison with the Inequality Operator: 
+ Here we show you the inequality operator, which is basically the opposite of the equality operator.
+ ```javascript
+ function testNotEqual(val) {
+   if (val != 99) {
+      return "Not Equal";
+   }
+   return "Equal";
+ }
+
+ console.log(testNotEqual(10));
+ ``` 
+
+ ##### Comparison with the Strict Inequality Operator:
+ Here we show you the inequality operator, which is basically the opposite of the strict equality operator.
+ ```javascript
+ function testStrictNotEqual(val) {
+  if (val !== 17) {
+     return "Not Equal";
+  }
+  return "Equal";
+}
+
+console.log(testNotEqual(10));
+ ```
+
+ ##### Comparison with the Logical And Operator:
+We can also use the greater than operator.
+```javascript
+function testGreaterThan(val) {
+   if (val > 100) {
+      return "over 100";
+   }
+ 
+   if (val > 10) {
+      return "over 10";
+   }
+
+   return "10 or Under";
+}
+
+console.log(testGreaterThan(10));
+```
+##### Comparison with the Greater Than or Equal To Operator:
+```javascript
+function testGreaterOrEqual(val) {
+   if (val >= 20) {
+      return "20 or over";
+   }
+
+   if (val >= 10) {
+      return "10 or over";
+   }
+
+   return "Less than 10";
+}
+
+console.log(testGreaterOrEqual(10));
+```
+ ##### Comparison with the Less Than Operator:
+ ```javascript
+function testLessThan(val) {
+   if (val < 25) {
+      return "Under 25";
+   }
+
+   if (val < 55) {
+      return "Under 55";
+   }
+
+   return "55 or Over";
+}
+
+console.log(testLessThan(10));
+```
+##### Comparison with the Less Than or Equal To Operator:
+```javascript
+function testLessOrEqual(val) {
+   if (val <= 12) {
+      return "Smaller Then or Equal to 12";
+   }
+
+   if (val <= 24) {
+      return "Smaller Then or Equal to 24";
+   }
+
+   return "More than 24";
+}
+
+console.log(testLessOrEqual(10));
+```
