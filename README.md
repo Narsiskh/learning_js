@@ -26,7 +26,7 @@ string, number, object, underfined, null, boolean, symbol
 
 #### Ways to declare a variable in JavaScript:
 
-1. Var: A variable allows computers to store and manipulate data in a dynamic fashion/a lable to point to the data: 
+1. Var: A variable allows computers to store and manipulate data in a dynamic lable to point to the data: 
 ```javascript
 var x = ""
 ```
