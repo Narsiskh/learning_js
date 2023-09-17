@@ -195,7 +195,7 @@ var firstName = "Ada";
 
 ```javascript
 var lastName = "Khoshnoud";
-var seocndToLastLetterOfLastName = lastName[lastName.length-2];
+var secondToLastLetterOfLastName = lastName[lastName.length-2];
 ```
 -------------------------------------
 
