@@ -230,7 +230,7 @@ When one of the elements in an array is another array,that`s called a nested arr
 var myArray = [["Birds", 23], ["White fox, 44]];
 ```
 #### Access Array Data:
-Earlier we learned how to ude bracket notation to find a specific index in a string. You can do the same thing with arrays.
+Earlier we learned how to use bracket notation to find a specific index in a string. You can do the same thing with arrays.
 ```javascript
 var theArray = [50,60,70];
 var ourData = theArray[0];
