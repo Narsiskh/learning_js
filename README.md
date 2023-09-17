@@ -42,7 +42,7 @@ const x = " "
 
 ----------------------------------
 
-### Incrementing & Decrememting Numbers :
+### Incrementing & Decrementing Numbers :
 #### Incrementing Numbers:
 
 To increment a number means to add 1 to it
