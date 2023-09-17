@@ -238,8 +238,8 @@ var ourData = theArray[0];
 #### Modify Array Data:
 You can use array indexe to modify arrays.
 ```javascript
-var thisarray = [18,64,99]
-var thisarray[1] = 45
+var thisArray = [18,64,99]
+var thisArray[1] = 45
 ```
 #### Access Multi-Dimensional Arrays:
 You can also use bracket notation to select an element in a multi-dimensional or array of arrays.
