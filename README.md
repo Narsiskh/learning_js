@@ -18,7 +18,7 @@ multiline cm
 string, number, object, underfined, null, boolean, symbol
 
 1. String: any sort of text
-2. Underfined: sth that hasnt been defined
+2. Undefined: sth that hasnt been defined
 3. Null: nothing
 4. Boolean : true or false
 5. Symbol: an immutable primitive value that is unique
